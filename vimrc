@@ -17,3 +17,12 @@ set hidden              " Hide buffers when they are abandoned
 set cursorline
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+set hlsearch
+
+" Uncomment the following to have Vim jump to the last position when                                                       
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
