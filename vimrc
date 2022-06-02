@@ -1,8 +1,9 @@
 syntax on
 set background=dark
 set shiftwidth=2
-set expandtab
-set tabstop=2
+"set expandtab
+"set tabstop=2
+set autoindent
 
 if has("autocmd")
   filetype plugin indent on
@@ -25,3 +26,12 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
+
+map <C-K> :py3file /usr/share/clang/clang-format-10/clang-format.py<cr>
+imap <C-K> <c-o>:py3file /usr/share/clang/clang-format-10/clang-format.py<cr>
+
+function! Formatonsave()
+  let l:formatdiff = 1
+  py3file /usr/share/clang/clang-format-10/clang-format.py
+endfunction
+autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
