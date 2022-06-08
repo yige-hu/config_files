@@ -35,3 +35,16 @@ function! Formatonsave()
   py3file /usr/share/clang/clang-format-10/clang-format.py
 endfunction
 autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+
+" polyglot
+let g:polyglot_disabled = ['go', 'python', 'cpp']
+
+" cpp
+autocmd FileType c,cpp,h,hpp setlocal expandtab tabstop=2
+autocmd Filetype c,cpp,h,hpp set comments^="///,"
+
+" go
+autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=0 textwidth=80
+
+" python
+autocmd FileType py set autoindent
